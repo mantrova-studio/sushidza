@@ -1,0 +1,17 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "zone": "A",
+        "restaurant": "Сушидза — основная точка",
+        "deliveryPrice": 150
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[55.05,51.76],[55.10,51.76],[55.10,51.80],[55.05,51.80],[55.05,51.76]]]
+      }
+    }
+  ]
+}

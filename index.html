@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>СУШИДЗА — доставка японской кухни</title>
+  <meta name="description" content="Суши, роллы, пицца, wok. Доставка в Оренбурге. Бесплатная доставка от 1000₽*" />
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script defer src="js/app.js"></script>
+</head>
+
+<body>
+  <div class="bg">
+    <div class="pattern"></div>
+    <div class="embers"></div>
+    <div class="vignette"></div>
+  </div>
+
+  <header class="header">
+    <div class="wrap header__row">
+      <a class="brand" href="#top" aria-label="Сушидза">
+        <img class="brand__logo" src="assets/logo.png" alt="Сушидза" />
+        <div class="brand__text">
+          <div class="brand__name">СУШИДЗА</div>
+          <div class="brand__sub">ДОСТАВКА ЯПОНСКОЙ КУХНИ</div>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="#menu" class="nav__link">Меню</a>
+        <a href="#delivery" class="nav__link">Доставка</a>
+        <a href="#about" class="nav__link">О нас</a>
+      </nav>
+
+      <button class="cartBtn" id="openCart" type="button">
+        <span class="cartBtn__label">Корзина</span>
+        <span class="cartBtn__count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero__grid">
+        <div class="hero__content">
+          <div class="pill">
+            Работаем круглосуточно • Бесплатная доставка от 1000₽*
+          </div>
+
+          <h1 class="hero__title">
+            Японская кухня, которую хочется.
+            <span class="grad">Свежо • Быстро • Вкусно</span>
+          </h1>
+
+          <p class="hero__desc">
+            Роллы и суши, пицца, wok, супы, салаты, фритюр и напитки. Соберём аккуратно — привезём красиво.
+          </p>
+
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#menu">Открыть меню</a>
+            <a class="btn btn--ghost" href="#delivery">Доставка и оплата</a>
+          </div>
+
+          <div class="hero__stats">
+            <div class="stat">
+              <div class="stat__num">от 1000₽</div>
+              <div class="stat__txt">бесплатная доставка*</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num">Geo</div>
+              <div class="stat__txt">зоны и цена доставки</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num">Telegram</div>
+              <div class="stat__txt">заказы в чат оператора</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__visual" aria-hidden="true">
+          <div class="flameCard">
+            <div class="flameCard__badge">TOP</div>
+            <div class="flameCard__title">Популярное</div>
+            <div class="flameCard__list" id="hits"></div>
+            <div class="flameCard__hint">Добавляй в корзину — оформим быстро</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="menu">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 class="section__title">Каталог</h2>
+          <div class="section__tools">
+            <div class="tabs" id="categoryTabs"></div>
+            <div class="search">
+              <input id="search" type="search" placeholder="Поиск по меню…" autocomplete="off">
+            </div>
+          </div>
+        </div>
+
+        <div class="grid" id="products"></div>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="delivery">
+      <div class="wrap">
+        <h2 class="section__title">Доставка и оплата</h2>
+        <div class="infoGrid">
+          <div class="infoCard">
+            <div class="infoCard__title">Как заказать</div>
+            <div class="infoCard__text">
+              Выберите блюда → добавьте в корзину → оформите заказ. Заказ уйдёт оператору в Telegram.
+            </div>
+          </div>
+
+          <div class="infoCard">
+            <div class="infoCard__title">Доставка</div>
+            <div class="infoCard__text">
+              Адрес можно указать вручную или выбрать на карте. Цена доставки рассчитывается по зонам GeoJSON.
+            </div>
+            <div class="smallNote">
+              * Условия бесплатной доставки и зоны — настраиваются в данных.
+            </div>
+          </div>
+
+          <div class="infoCard">
+            <div class="infoCard__title">Оплата</div>
+            <div class="infoCard__text">
+              Наличные / картой курьеру. (Онлайн добавим при необходимости.)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="contacts">
+          <div>
+            <h2 class="section__title">О нас</h2>
+            <p class="muted">
+              Сушидза — доставка японской кухни в Оренбурге: роллы, суши, wok, пицца и многое другое.
+            </p>
+          </div>
+
+          <div class="contacts__cards">
+            <div class="contactCard">
+              <div class="contactCard__label">Телефон</div>
+              <a class="contactCard__value" href="tel:+79226252881">+7 (922) 625-28-81</a>
+            </div>
+            <div class="contactCard">
+              <div class="contactCard__label">Телефон</div>
+              <a class="contactCard__value" href="tel:+79226252884">+7 (922) 625-28-84</a>
+            </div>
+          </div>
+        </div>
+
+        <footer class="footer">
+          <div class="footer__line"></div>
+          <div class="footer__row">
+            <div class="muted">© СУШИДЗА</div>
+            <div class="muted">Заказы через сайт → Telegram оператору</div>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <!-- CART DRAWER -->
+  <div class="drawer" id="cartDrawer" aria-hidden="true">
+    <div class="drawer__backdrop" id="closeCart"></div>
+    <div class="drawer__panel">
+      <div class="drawer__head">
+        <div class="drawer__title">Корзина</div>
+        <button class="iconBtn" id="closeCart2" type="button" aria-label="Закрыть">✕</button>
+      </div>
+
+      <div class="drawer__body">
+        <div id="cartItems" class="cartItems"></div>
+      </div>
+
+      <div class="drawer__foot">
+        <div class="sumRow">
+          <div class="muted">Сумма</div>
+          <div class="sumVal" id="cartSubtotal">0 ₽</div>
+        </div>
+        <button class="btn btn--primary w100" id="goCheckout" type="button">Оформить заказ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="modal" id="checkoutModal" aria-hidden="true">
+    <div class="modal__backdrop" id="closeCheckout"></div>
+    <div class="modal__panel">
+      <div class="modal__head">
+        <div class="modal__title">Оформление заказа</div>
+        <button class="iconBtn" id="closeCheckout2" type="button" aria-label="Закрыть">✕</button>
+      </div>
+
+      <form class="modal__body" id="checkoutForm">
+        <div class="formGrid">
+          <div class="field">
+            <label>Имя</label>
+            <input name="name" required placeholder="Как к вам обращаться">
+          </div>
+          <div class="field">
+            <label>Телефон</label>
+            <input name="phone" required placeholder="+7 …" inputmode="tel">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Способ получения</label>
+          <div class="seg">
+            <button class="seg__btn isOn" type="button" data-mode="delivery">Доставка</button>
+            <button class="seg__btn" type="button" data-mode="pickup">Самовывоз</button>
+          </div>
+          <input type="hidden" name="mode" value="delivery">
+        </div>
+
+        <div class="field" id="pickupBlock" hidden>
+          <label>Адрес самовывоза</label>
+          <select name="pickupAddress">
+            <option>Оренбург, Театральная 1/1</option>
+            <option>Оренбург, 27 Линия 60</option>
+            <option>Оренбург, Кичигина 8</option>
+          </select>
+          <div class="hint">Если у Сушидзы другие адреса — поменяем в списке.</div>
+        </div>
+
+        <div id="deliveryBlock">
+          <div class="formGrid">
+            <div class="field">
+              <label>Адрес доставки</label>
+              <input name="address" placeholder="Введите адрес или выберите на карте">
+              <div class="hint">Можно нажать по карте или найти по адресу</div>
+            </div>
+            <div class="field">
+              <label>Поиск адреса</label>
+              <div class="row">
+                <input id="addrSearch" placeholder="Например: Оренбург, Ленина 10">
+                <button class="btn btn--ghost" id="btnSearchAddr" type="button">Найти</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mapWrap">
+            <div class="map" id="map"></div>
+            <div class="mapInfo" id="mapInfo">Выберите точку доставки…</div>
+          </div>
+        </div>
+
+        <div class="formGrid">
+          <div class="field">
+            <label>Оплата</label>
+            <select name="payment">
+              <option value="cash">Наличными</option>
+              <option value="card">Картой курьеру</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Комментарий</label>
+            <input name="comment" placeholder="Домофон, подъезд, этаж, примечания…">
+          </div>
+        </div>
+
+        <div class="totalBox">
+          <div class="totalRow">
+            <span>Сумма</span><b id="sumProducts">0 ₽</b>
+          </div>
+          <div class="totalRow">
+            <span>Доставка</span><b id="sumDelivery">—</b>
+          </div>
+          <div class="totalRow totalRow--grand">
+            <span>Итого</span><b id="sumTotal">0 ₽</b>
+          </div>
+          <div class="muted small">После отправки заказ улетит в Telegram оператору.</div>
+        </div>
+
+        <button class="btn btn--primary w100" type="submit" id="submitOrder">
+          Отправить заказ
+        </button>
+
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
