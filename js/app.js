@@ -5,6 +5,7 @@
 */
 
 const ORDER_API_URL = "https://YOUR-WORKER-URL.example.workers.dev/order"; // <-- заменишь
+const STORAGE_KEY = "sushidza_local_v1";
 
 const els = {
   products: document.getElementById("products"),
